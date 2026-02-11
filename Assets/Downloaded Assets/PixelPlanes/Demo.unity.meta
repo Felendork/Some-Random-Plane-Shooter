@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d72e73ae01130b948ae9b34997d59ae0
+timeCreated: 1543819192
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 134474
+  packageName: Pixel planes 2D
+  packageVersion: 1.1
+  assetPath: Assets/PixelPlanes/Demo.unity
+  uploadId: 318679

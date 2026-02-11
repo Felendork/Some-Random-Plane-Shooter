@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 62f1918d964558446a0f32f7e74e75d7
+timeCreated: 1562153764
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 134474
+  packageName: Pixel planes 2D
+  packageVersion: 1.1
+  assetPath: Assets/PixelPlanes/Apache.prefab
+  uploadId: 318679

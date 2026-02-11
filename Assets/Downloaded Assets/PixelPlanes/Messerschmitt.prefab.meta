@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a5c56f6db0fa5bd42a908f09db870e51
+timeCreated: 1543856631
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 134474
+  packageName: Pixel planes 2D
+  packageVersion: 1.1
+  assetPath: Assets/PixelPlanes/Messerschmitt.prefab
+  uploadId: 318679

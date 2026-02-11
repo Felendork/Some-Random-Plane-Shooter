@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: de3c26b351c6d004891a0dd09c68f646
+timeCreated: 1543856628
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 134474
+  packageName: Pixel planes 2D
+  packageVersion: 1.1
+  assetPath: Assets/PixelPlanes/Lightning.prefab
+  uploadId: 318679
