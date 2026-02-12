@@ -565,8 +565,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 800540612401044888, guid: 52fa0f3ba7e5f7c4d8d93dbcde9c97cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 734890244}
   m_SourcePrefab: {fileID: 100100000, guid: 52fa0f3ba7e5f7c4d8d93dbcde9c97cb, type: 3}
+--- !u!1 &734890243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 800540612401044888, guid: 52fa0f3ba7e5f7c4d8d93dbcde9c97cb, type: 3}
+  m_PrefabInstance: {fileID: 734890242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &734890244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734890243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45ed58d72413a34583d3bd8c19bbc5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEnter
+  _startY: -7
+  _targetY: 0
+  _enterSpeed: 6
+  _playerControlScript: {fileID: 0}
 --- !u!1 &816605000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1201,10 @@ PrefabInstance:
     - target: {fileID: 3368168048459867440, guid: 7af425760820e9d479a0d012975c74d7, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6043678453275878950, guid: 7af425760820e9d479a0d012975c74d7, type: 3}
+      propertyPath: _sfxVolume
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6043678453275878950, guid: 7af425760820e9d479a0d012975c74d7, type: 3}
       propertyPath: _level3Music

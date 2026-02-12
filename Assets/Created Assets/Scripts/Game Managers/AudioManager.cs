@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [Header("Audio Sources")]
-    [SerializeField] 
+    [SerializeField]
     private AudioSource _musicSource;
     [SerializeField] 
     private AudioSource _sfxSource;
@@ -16,41 +16,38 @@ public class AudioManager : MonoBehaviour
     private AudioClip _playerBulletClip;
     [SerializeField] 
     private AudioClip _playerDamageClip;
-    [SerializeField] 
+    [SerializeField]
     private AudioClip _playerDeathExplosionClip;
-
     [SerializeField]
     private AudioClip _healUpClip;
-
-    [SerializeField]
+    [SerializeField] 
     private AudioClip _enemyBulletClip;
-    [SerializeField]
+    [SerializeField] 
     private AudioClip _enemyDeathExplosionClip;
-    [SerializeField]
+    [SerializeField] 
     private AudioClip _missileSFXClip;
     [SerializeField]
     private AudioClip _missileExplosionClip;
     [SerializeField]
     private AudioClip _bossRapidFireClip;
 
-    // Changed from the one music clip, to three. 
-    [Header("Level Music Clips")]
+    [Header("Music Clips")]
+    [SerializeField] 
+    private AudioClip _menuMusicClip; 
     [SerializeField] 
     private AudioClip _level1Music;
     [SerializeField] 
     private AudioClip _level2Music;
-    [SerializeField]
+    [SerializeField] 
     private AudioClip _level3Music;
 
     [Header("Volumes")]
-    [Range(0f, 1f)][SerializeField]
-    private float _musicVolume = 0.6f;
-    [Range(0f, 1f)][SerializeField] 
-    private float _sfxVolume = 1f;
+    [Range(0f, 1f)][SerializeField] private float _musicVolume = 0.6f;
+    [Range(0f, 1f)][SerializeField] private float _sfxVolume = 1f;
 
     private void Awake()
     {
-        // Singleton pattern (one AudioManager in the whole game)
+        // Singleton pattern
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -60,7 +57,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // If you forgot to assign sources, try grabbing them
+        // Auto-grab AudioSources if not assigned
         if (_musicSource == null || _sfxSource == null)
         {
             AudioSource[] sources = GetComponents<AudioSource>();
@@ -86,21 +83,38 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Decide which clip should play for this scene.
-        AudioClip target = null;
+        // Handle music based on scene
+        AudioClip targetClip = null;
 
-        // Use either scene.buildIndex or scene.name.
-        // Example assumes: 1 = Level1, 2 = Level2, 3 = Level3
         switch (scene.buildIndex)
         {
-            case 1: target = _level1Music; break;
-            case 2: target = _level2Music; break;
-            case 3: target = _level3Music; break;
+            case 0: // Main Menu
+                targetClip = _menuMusicClip;
+                break;
+            case 1: // Level 1
+                targetClip = _level1Music;
+                break;
+            case 2: // Level 2
+                targetClip = _level2Music;
+                break;
+            case 3: // Level 3
+                targetClip = _level3Music;
+                break;
+            default:
+                // Unknown scene - stop music
+                StopMusic();
+                return;
         }
 
-        if (target != null)
+        // Play appropriate music (or stop if null)
+        if (targetClip != null)
         {
-            PlayMusicIfNotAlready(target);
+            PlayMusicIfNotAlready(targetClip);
+        }
+        else
+        {
+            // No music for this scene - stop any playing music
+            StopMusic();
         }
     }
 
@@ -111,7 +125,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Prevent restarting the same track when reloading UI / objects
+        // If already playing this clip, don't restart
         if (_musicSource.isPlaying && _musicSource.clip == clip)
         {
             return;
@@ -131,17 +145,14 @@ public class AudioManager : MonoBehaviour
         {
             _sfxSource.volume = _sfxVolume;
         }
-
     }
 
-    // ---------- Generic helpers ----------
     private void PlaySFX(AudioClip clip)
     {
         if (_sfxSource == null || clip == null)
         {
             return;
         }
-
         _sfxSource.PlayOneShot(clip, _sfxVolume);
     }
 
@@ -149,15 +160,11 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerBullet() => PlaySFX(_playerBulletClip);
     public void PlayPlayerDamage() => PlaySFX(_playerDamageClip);
     public void PlayPlayerDeathExplosion() => PlaySFX(_playerDeathExplosionClip);
-
     public void PlayHealUpSound() => PlaySFX(_healUpClip);
-
     public void PlayEnemyBullet() => PlaySFX(_enemyBulletClip);
     public void PlayEnemyDeathExplosion() => PlaySFX(_enemyDeathExplosionClip);
-
     public void PlayEnemyMissileSFX() => PlaySFX(_missileSFXClip);
     public void PlayEnemyMissileExplosionSFX() => PlaySFX(_missileExplosionClip);
-
     public void PlayBossRapidFireSFX() => PlaySFX(_bossRapidFireClip);
 
     // ---------- Music methods ----------
@@ -180,7 +187,6 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-
         _musicSource.Stop();
     }
 
@@ -196,7 +202,6 @@ public class AudioManager : MonoBehaviour
     public void SetSFXVolume(float v)
     {
         _sfxVolume = Mathf.Clamp01(v);
-        // PlayOneShot uses the volume passed in, but we also keep the source volume sane
         if (_sfxSource != null)
         {
             _sfxSource.volume = _sfxVolume;
